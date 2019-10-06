@@ -1,2 +1,2 @@
 # Arctiq_mission
-![alt text](https://ibb.co/c8ZMww2)
+![alt text](https://i.ibb.co/my2100h/Infrastracture-diagram.jpg)
