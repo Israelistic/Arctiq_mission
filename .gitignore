@@ -13,7 +13,7 @@
 .terraform
 
 #tfvars files
-*/variables.tsvars
+*.tsvars
 
 # .tfstate files
 *.tfstate
