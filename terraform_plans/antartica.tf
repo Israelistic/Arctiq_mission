@@ -342,3 +342,71 @@ resource "aws_route_table_association" "private2_north_pole_assoc" {
   subnet_id      = "${aws_subnet.north_pole_private2_sunbet.id}"
   route_table_id = "${aws_default_route_table.north_pole_private_rt.id}"
 }
+######################Subnets Associations####################
+resource "aws_security_group" "antartica_wp_dev_sg" {
+  name        = "wp_dev_sg"
+  description = "Used for access to the dev instance"
+  vpc_id      = "${aws_vpc.antartica_vpc.id}"
+  #SSH access from private ip
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.local_ip}"]
+  }
+  #HTTP  access from private ip
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["${var.local_ip}"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["${var.local_ip}"]
+  }
+  egress { # outbound internet access
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+}
+
+resource "aws_security_group" "north_pole_wp_dev_sg" {
+  provider    = aws.central
+  name        = "wp_dev_sg"
+  description = "Used for access to the dev instance"
+  vpc_id      = "${aws_vpc.north_pole_vpc.id}"
+  #SSH access from private ip
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${var.local_ip}"]
+  }
+  #HTTP  access from private ip
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["${var.local_ip}"]
+  }
+  #HTTPS access from private ip
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["${var.local_ip}"]
+  }
+  egress { #outbound internet access
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+}
