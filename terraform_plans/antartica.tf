@@ -276,4 +276,21 @@ resource "aws_subnet" "north_pole_rds3_sunbet" {
   }
 
 }
-######################Subnets####################
+######################Subnets Groups####################
+resource "aws_db_subnet_group" "antartica_rds_subnet_grp" {
+  name       = "antartica_rds_subnet_grp"
+  subnet_ids = ["${aws_subnet.antartica_rds1_sunbet.id}", "${aws_subnet.antartica_rds2_sunbet.id}", "${aws_subnet.antartica_rds3_sunbet.id}"]
+  tags = {
+    Name = "antartica_rds_sng"
+  }
+}
+resource "aws_db_subnet_group" "north_pole_rds_subnet_grp" {
+  provider   = aws.central
+  name       = "north_pole_rds_subnet_grp"
+  subnet_ids = ["${aws_subnet.north_pole_rds1_sunbet.id}", "${aws_subnet.north_pole_rds2_sunbet.id}", "${aws_subnet.north_pole_rds3_sunbet.id}"]
+  tags = {
+    Name = "north_pole_rds_sng"
+  }
+}
+
+######################Subnets Associations####################
