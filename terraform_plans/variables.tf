@@ -1,9 +1,24 @@
+#EC2 vars
+
+variable "dev_instance_type" {}
+variable "dev_ami_antartica" {}
+variable "dev_ami_north_pole" {}
+variable "penguin_public_key_path" {}
+variable "bear_public_key_path" {}
+
+variable "key_name" {}
+variable "key_name_" {}
+
+
+
+
+#DB VARS
 variable "db_instance_class" {}
 variable "dbname1" {}
 variable "dbname2" {}
 variable "dbuser" {}
 variable "dbpassword" {}
-
+#AWS vars
 variable "local_ip" {}
 variable "domain_name" {}
 variable "aws_profile" {}
