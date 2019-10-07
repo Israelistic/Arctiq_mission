@@ -1,5 +1,7 @@
 
 variable "local_ip" {}
+variable "domain_name" {
+}
 
 variable "aws_profile" {}
 variable "region_antartica" {}
