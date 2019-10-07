@@ -131,6 +131,8 @@ resource "aws_default_route_table" "antartica_private_rt" {
     Name = "antartica_private_RT"
   }
 }
+
+
 #create a default private route table
 resource "aws_default_route_table" "north_pole_private_rt" {
   provider               = aws.central
@@ -139,8 +141,12 @@ resource "aws_default_route_table" "north_pole_private_rt" {
     Name = "north_pole_private_RT"
   }
 }
+
+
+
 ######################Subnets####################
 # I know there must be a way to dry the code.
+# Public Subnet
 resource "aws_subnet" "antartica_public1_sunbet" {
   vpc_id                  = "${aws_vpc.antartica_vpc.id}"
   cidr_block              = "${var.cidrs_antartica["public1"]}"
@@ -159,6 +165,7 @@ resource "aws_subnet" "antartica_public2_sunbet" {
     Name = "anatrtica_public2"
   }
 }
+# Private Subnet
 resource "aws_subnet" "antartica_private1_sunbet" {
   vpc_id                  = "${aws_vpc.antartica_vpc.id}"
   cidr_block              = "${var.cidrs_antartica["private1"]}"
@@ -294,3 +301,44 @@ resource "aws_db_subnet_group" "north_pole_rds_subnet_grp" {
 }
 
 ######################Subnets Associations####################
+# to public rt
+resource "aws_route_table_association" "public1_antartica_assoc" {
+  subnet_id      = "${aws_subnet.antartica_public1_sunbet.id}"
+  route_table_id = "${aws_route_table.antartica_rt.id}"
+}
+resource "aws_route_table_association" "public2_antartica_assoc" {
+  subnet_id      = "${aws_subnet.antartica_public2_sunbet.id}"
+  route_table_id = "${aws_route_table.antartica_rt.id}"
+}
+
+resource "aws_route_table_association" "public1_north_pole_assoc" {
+  provider       = aws.central
+  subnet_id      = "${aws_subnet.north_pole_public1_sunbet.id}"
+  route_table_id = "${aws_route_table.north_pole_rt.id}"
+}
+resource "aws_route_table_association" "public2_north_pole_assoc" {
+  provider       = aws.central
+  subnet_id      = "${aws_subnet.north_pole_public2_sunbet.id}"
+  route_table_id = "${aws_route_table.north_pole_rt.id}"
+}
+
+# to private rt
+resource "aws_route_table_association" "private1_antartica_assoc" {
+  subnet_id      = "${aws_subnet.antartica_private1_sunbet.id}"
+  route_table_id = "${aws_default_route_table.antartica_private_rt.id}"
+}
+
+resource "aws_route_table_association" "private2_antartica_assoc" {
+  subnet_id      = "${aws_subnet.antartica_private2_sunbet.id}"
+  route_table_id = "${aws_default_route_table.antartica_private_rt.id}"
+}
+resource "aws_route_table_association" "private1_north_pole_assoc" {
+  provider       = aws.central
+  subnet_id      = "${aws_subnet.north_pole_private1_sunbet.id}"
+  route_table_id = "${aws_default_route_table.north_pole_private_rt.id}"
+}
+resource "aws_route_table_association" "private2_north_pole_assoc" {
+  provider       = aws.central
+  subnet_id      = "${aws_subnet.north_pole_private2_sunbet.id}"
+  route_table_id = "${aws_default_route_table.north_pole_private_rt.id}"
+}
