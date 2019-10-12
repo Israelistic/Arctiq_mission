@@ -13,8 +13,8 @@ resource "aws_autoscaling_group" "antrartica_asg" {
   vpc_zone_identifier = ["${aws_subnet.antartica_private1_sunbet.id}, ${aws_subnet.antartica_private2_sunbet.id}"]
 
   launch_configuration = "${aws_launch_configuration.antartica_wp_lc.name}"
-  tag   {
-    key                = "Name"
+  tag {
+    key                 = "Name"
     value               = "wp_asg-instance"
     propagate_at_launch = true # create a tag at lunch
   }
@@ -40,8 +40,8 @@ resource "aws_autoscaling_group" "north_pole_asg" {
   vpc_zone_identifier = ["${aws_subnet.north_pole_private1_sunbet.id}, ${aws_subnet.north_pole_private1_sunbet.id}"]
 
   launch_configuration = "${aws_launch_configuration.north_pole_wp_lc.name}"
-  tag  {
-    key                = "Name"
+  tag {
+    key                 = "Name"
     value               = "wp_asg-instance"
     propagate_at_launch = true
   }

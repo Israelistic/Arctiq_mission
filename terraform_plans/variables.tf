@@ -60,4 +60,6 @@ variable "asg_hct" {}
 variable "asg_cap" {}
 # Lunch Configuration
 variable "lc_instance_type" {}
+#DNS
+variable delegation_set {}
 
