@@ -1,0 +1,13 @@
+{
+    "Location": "https://route53.amazonaws.com/2013-04-01/delegationset/N716QSN5WSPCL",
+    "DelegationSet": {
+        "Id": "/delegationset/N716QSN5WSPCL",
+        "CallerReference": "1234",
+        "NameServers": [
+            "ns-1888.awsdns-44.co.uk",
+            "ns-639.awsdns-15.net",
+            "ns-1295.awsdns-33.org",
+            "ns-507.awsdns-63.com"
+        ]
+    }
+}
