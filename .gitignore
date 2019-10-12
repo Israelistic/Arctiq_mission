@@ -4,7 +4,7 @@
 
 #Ignore all hiddden but !.gitignore
 .*
-!.gitignor
+!.gitignore
 
 
 # Local .terraform directories
