@@ -39,7 +39,10 @@ variable "cidrs_north_pole" {
   type = "map"
 }
 
-data "aws_availability_zones" "available" {}
+
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 variable "canada_az" {
   type = "map"
