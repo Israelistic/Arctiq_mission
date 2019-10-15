@@ -35,7 +35,7 @@ EOF
 EOD
   }
   provisioner "local-exec" {
-    command = "aws ec2 wait in instance-status-ok --instance-ids ${aws_instance.antartica_penguin_wp_dev.id}  --profile haggai && ansible-playbook -i aws_hosts wordpress.yml"
+    command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.antartica_penguin_wp_dev.id} --profile haggai && ansible-playbook -i aws_hosts wordpress.yml"
   }
 }
 
@@ -64,6 +64,6 @@ EOF
 EOD
   }
   provisioner "local-exec" {
-    command = "aws ec2 wait in instance-status-ok --instance-ids ${aws_instance.north_pole_bear_wp_dev.id}  --profile haggai && ansible-playbook -i aws_hosts wordpress.yml"
+    command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.north_pole_bear_wp_dev.id} --profile haggai && ansible-playbook -i aws_hosts wordpress.yml"
   }
 }

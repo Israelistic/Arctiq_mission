@@ -4,6 +4,7 @@ resource "aws_key_pair" "penguin_auth" {
 }
 
 resource "aws_key_pair" "bear_auth" {
+  provider   = aws.central
   key_name   = "${var.key_name_}"
   public_key = "${file(var.bear_public_key_path)}"
 }
