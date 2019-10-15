@@ -30,16 +30,19 @@ resource "aws_route53_record" "antartica_record_dev" {
 
 resource "aws_route53_zone" "antartica_secondary_record" {
   name = "${var.domain_name}.com"
-  vpc_id = "${aws_vpc.antartica_vpc.id}"
+  vpc {
+    vpc_id = "${aws_vpc.antartica_vpc.id}"
+  }
 }
 
 #BD
 resource "aws_route53_record" "antartica_db_record" {
   zone_id = "${aws_route53_zone.antartica_secondary_record.zone_id}"
-  name = "db.${var.domain_name}.com"
-  type = "CNAME"
-  ttl = "300"
-  records = ["${aws_db_instance.antartica_wp_db.address}"]
+  name    = "db.${var.domain_name}.com"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${aws_db_instyes
+  ance.antartica_wp_db.address}"]
 }
 
 
