@@ -41,8 +41,7 @@ resource "aws_route53_record" "antartica_db_record" {
   name    = "db.${var.domain_name}.com"
   type    = "CNAME"
   ttl     = "300"
-  records = ["${aws_db_instyes
-  ance.antartica_wp_db.address}"]
+  records = ["${aws_db_instance.antartica_wp_db.address}"]
 }
 
 
