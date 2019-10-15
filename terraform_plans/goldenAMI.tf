@@ -23,8 +23,8 @@ resource "aws_ami_from_instance" "antartica_wp_golden" {
 
 }
 resource "aws_ami_from_instance" "north_pole_wp_golden" {
-  provider           = aws.central
-  name               = "wp_ami-${random_id.golden_ami.b64}"
+  provider = aws.central
+  name = "wp_ami-${random_id.golden_ami.b64}"
   source_instance_id = "${aws_instance.north_pole_bear_wp_dev.id}"
 
   provisioner "local-exec" {

@@ -36,9 +36,9 @@ resource "aws_route53_zone" "antartica_secondary_record" {
 #BD
 resource "aws_route53_record" "antartica_db_record" {
   zone_id = "${aws_route53_zone.antartica_secondary_record.zone_id}"
-  name = "db.${var.domain_name}.ca"
-  type = "CNAME"
-  ttl = "300"
+  name    = "db.${var.domain_name}.com"
+  type    = "CNAME"
+  ttl     = "300"
   records = ["${aws_db_instance.antartica_wp_db.address}"]
 }
 
